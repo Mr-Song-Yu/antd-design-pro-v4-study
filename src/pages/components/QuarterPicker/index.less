@@ -1,0 +1,79 @@
+.quarterPickerBox {
+  width: 230px;
+}
+.quarterPicker {
+  :global {
+    .ant-picker-year-panel,
+    .ant-picker-quarter-panel {
+      width: 230px;
+    }
+    // 修改选中的年份、季度背景颜色
+    .ant-picker-cell-selected {
+      .ant-picker-cell-inner {
+        background: #5788ff;
+      }
+    }
+    // 使用CSS改变季度选择器的内容
+    .ant-picker-quarter-panel {
+      .ant-picker-content {
+        // 使季度选择器可以换行成两排
+        tr {
+          display: flex;
+          flex-wrap: wrap;
+        }
+        // 控制按钮外层宽度，使器溢出换行
+        td {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 50%;
+          height: 50px;
+          padding: 20px;
+        }
+      }
+      // 使before伪元素和按钮背景颜色一致
+      .ant-picker-cell-selected {
+        &::before {
+          color: #fff;
+          background: #5788ff;
+        }
+      }
+      // 控制伪元素所占宽度
+      .ant-picker-cell {
+        &::before {
+          right: auto;
+          left: auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 60%;
+        }
+      }
+      // 隐藏季度选择器的按钮，用伪元素代替
+      .ant-picker-cell-inner {
+        display: none;
+      }
+      // 根据title更换相应伪元素的content，使其代替原本的按钮
+      .ant-picker-cell[title$='-Q1'] {
+        &::before {
+          content: '第一季度';
+        }
+      }
+      .ant-picker-cell[title$='-Q2'] {
+        &::before {
+          content: '第二季度';
+        }
+      }
+      .ant-picker-cell[title$='-Q3'] {
+        &::before {
+          content: '第三季度';
+        }
+      }
+      .ant-picker-cell[title$='-Q4'] {
+        &::before {
+          content: '第四季度';
+        }
+      }
+    }
+  }
+}
